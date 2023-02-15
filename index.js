@@ -1,13 +1,14 @@
 // Import the required libraries
+require('dotenv').config();
 const Discord = require('discord.js');
-const client = new Discord.Client();
-const fetch = require('node-fetch');
-
-// Define your bot's prefix
-const PREFIX = '!';
+const { Client, GatewayIntentBits, Partials } = require('discord.js');
+const client = new Discord.Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers], partials: [Partials.Channel, Partials.GuildMember, Partials.Message] });
 
 // Define your bot's token
 const token = process.env.DISCORD_BOT_TOKEN;
+
+// Define your bot's prefix
+const PREFIX = '!';
 
 // Listen for when the bot is ready
 client.on('ready', () => {
